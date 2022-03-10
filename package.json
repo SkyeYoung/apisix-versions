@@ -9,13 +9,10 @@
   },
   "dependencies": {
     "@octokit/request": "^5.6.3",
-    "cross-fetch": "^3.1.5",
     "hast-to-hyperscript": "^10.0.1",
     "isomorphic-fetch": "^3.0.0",
     "mdast-util-to-hast": "^12.1.1",
-    "rehype-stringify": "^9.0.3",
     "remark-parse": "^10.0.1",
-    "remark-rehype": "^10.1.0",
     "unified": "^10.1.1",
     "vue": "^3.2.25"
   },

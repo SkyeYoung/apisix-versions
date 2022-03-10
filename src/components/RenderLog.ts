@@ -1,7 +1,7 @@
 import { toH } from "hast-to-hyperscript";
 import type { BlockContent, Root, Heading, Text } from "mdast";
 import { toHast } from "mdast-util-to-hast";
-import { defineComponent, h, Prop, TransitionGroup } from "vue";
+import { h, TransitionGroup } from "vue";
 
 function renderLog(con: BlockContent[]) {
   const root: Root = {
