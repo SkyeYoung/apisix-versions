@@ -5,12 +5,13 @@ import parseLog from "../utils/parseLog";
 import RenderLog from "./RenderLog";
 
 const isLTS = ref(false);
-const status = ref<string>();
 const info = ref<ReturnType<typeof parseLog>>();
 
 const versions = computed(() =>
   isLTS.value ? info.value?.LTSVersionBlocks : info.value?.versionBlocks
 );
+
+const status = computed(() => (isLTS.value ? "😃" : "👿"));
 
 function setIsLTS(status: boolean) {
   isLTS.value = status;
@@ -18,8 +19,6 @@ function setIsLTS(status: boolean) {
 
 onBeforeMount(async () => {
   const content = await fetchLog();
-
-  status.value = !!content ? "😃" : "👿";
 
   info.value = parseLog(content);
 });
@@ -32,12 +31,15 @@ onBeforeMount(async () => {
       <div class="status"></div>
     </h1>
   </section>
-  <section class="content" v-if="versions">
+  <section v-if="versions" class="content">
     <menu>
       <button @click="setIsLTS(false)" :class="{ selected: !isLTS }">ALL</button>
       <button @click="setIsLTS(true)" :class="{ selected: isLTS }">LTS</button>
     </menu>
     <RenderLog :contents="versions" />
+  </section>
+  <section v-else class="text-center">
+    <h1 title="Something went wrong. Please check the console">{{ status }}</h1>
   </section>
 </template>
 
